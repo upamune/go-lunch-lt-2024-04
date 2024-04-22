@@ -158,7 +158,7 @@ layout: fact
 layout: two-cols
 ---
 
-### こういうコードがあると 💭
+### 改善前：こういうコードがあると 💭
 
 https://play.golang.com/p/3DsLq8TnI_w
 
@@ -460,11 +460,34 @@ layout: center
 - `logger.Error().Caller().Err(err).Send()` を一括で削除
 - 有用なログはメッセージを付けていたり，他のフィールドが付与されているので，完全に一致するコードだけを削除対応
 
+
+## これからのエラーのWrap漏れ，必要ないエラーログの検知 🕵️
+
+<br/>
+
+- エラーのWrap漏れ検知
+  - [tomarrell/wrapcheck](https://github.com/tomarrell/wrapcheck)を[golangci-lint](https://golangci-lint.run/)で利用
+- 必要なくなったエラーログの検知
+  - [semgrep](https://semgrep.dev/)でルールを書いてCIで検知
+
+  ```yaml
+  rules:
+  - id: meaningless-error-log
+    patterns:
+      - pattern-either:
+          - pattern: $X.Error().Err($ERR).Send()
+    message: "冗長なエラーログを出力しないでください"
+    languages: [ go ]
+    severity: ERROR
+  ```
+  - 👇 以下のような，フィールドが設定されていたりメッセージが設定されているログには引っかからない
+    - `logger.Error().Err(err).Str("key", "value").Msg("blah blah blah")`
+
 ---
 layout: two-cols
 ---
 
-### こういうコードがあると 💭
+### 改善後：こういうコードがあると 💭
 
 https://play.golang.com/p/9mHbLWVEwpt
 
@@ -535,29 +558,6 @@ layout: default
 layout: center
 ---
 
-## これからのエラーのWrap漏れ，必要ないエラーログの検知 🕵️
-
-<br/>
-
-- エラーのWrap漏れ検知
-  - [tomarrell/wrapcheck](https://github.com/tomarrell/wrapcheck)を[golangci-lint](https://golangci-lint.run/)で利用
-- 必要なくなったエラーログの検知
-  - [semgrep](https://semgrep.dev/)でルールを書いてCIで検知
-
-  ```yaml
-  rules:
-  - id: meaningless-error-log
-    patterns:
-      - pattern-either:
-          - pattern: $X.Error().Err($ERR).Send()
-    message: "冗長なエラーログを出力しないでください"
-    languages: [ go ]
-    severity: ERROR
-  ```
-  - 👇 以下のような，フィールドが設定されていたりメッセージが設定されているログには引っかからない
-    - `logger.Error().Err(err).Str("key", "value").Msg("blah blah blah")`
-
-
 ---
 layout: center
 ---
@@ -596,4 +596,4 @@ layout: center
 
 - 昨日決まったんですが，**layerx.go** をやります!!
 - 👇 以下のリンクから参加登録ができるので，ぜひ来てください (発表してくださる方もお待ちしております)
-- Conpassのリンクがここに入る
+- http://example.com
