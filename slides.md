@@ -340,9 +340,9 @@ layout: center
 - かなりマッチョな方法でIDEの置換でゴリゴリやっていった 💪
   - [tomarrell/wrapcheck](https://github.com/tomarrell/wrapcheck)で漏れている部分を検知しつつ...
 - ex. 
-  - `return nil, error` => `return nil, lxerror.Wrap(err)`
-  - `return "", error` => `return "", lxerror.Wrap(err)`
-  - `return nil, nil, error` => `return nil, nil, lxerror.Wrap(err)`
+  - `return nil, err` => `return nil, lxerror.Wrap(err)`
+  - `return "", err` => `return "", lxerror.Wrap(err)`
+  - `return nil, nil, err` => `return nil, nil, lxerror.Wrap(err)`
 
 意外と綺麗に置換できたが... もっと良い方法があったかも? 🤔
 
