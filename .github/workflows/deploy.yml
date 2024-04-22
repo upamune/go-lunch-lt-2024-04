@@ -30,7 +30,7 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build -- --base /<name_of_repo>/
+        run: npm run build -- --base /go-lunch-lt-2024-04/
 
       - uses: actions/configure-pages@v4
 
