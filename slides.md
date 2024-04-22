@@ -598,4 +598,4 @@ layout: center
 
 - 昨日決まったんですが，**layerx.go** をやります!!
 - 👇 以下のリンクから参加登録ができるので，ぜひ来てください (発表してくださる方もお待ちしております)
-- http://example.com
+- https://layerx.connpass.com/event/317228
