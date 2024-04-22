@@ -31,7 +31,7 @@ Goのエラーハンドリング 最新事情Lunch LT - 2024/04/23
 
 <br/>
 
-<div grid="~ cols-2 gap-50" m="t-2">
+<div grid="~ cols-2 gap-30" m="t-2">
   <div>
     <ul>
       <li>株式会社LayerX バクラク事業部
@@ -40,7 +40,7 @@ Goのエラーハンドリング 最新事情Lunch LT - 2024/04/23
         </ul>
       </li>
       <li>バクラク申請・経費精算 テックリード</li>
-      <li>最近は趣味で始めたポッドキャストでキラキラシールを作ったんですが盛大に失敗しました</li>
+      <li>最近は同僚のPdMと趣味で始めたポッドキャストでキラキラシールを作ったんですが盛大に失敗しました</li>
       <li>🎙️ マヂカル.fm
         <ul>
           <li><a href="https://magical.fm/">https://magical.fm/</a></li>
