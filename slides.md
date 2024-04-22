@@ -90,12 +90,12 @@ layout: center
 ---
 
 # スタックトレースが欲しい!! ...ですよね?
-- ログから簡単にどこから発生したエラーなのかを追いたい
-- スタックトレースが無いと，同じエラーメッセージを返している部分があったら，どっちが返したエラーなのか特定が難しい
+- エラーが発生したら，ログから簡単にどこから発生したエラーなのかを追いたい
+- スタックトレースが無いと，同じエラーを返している部分があったら，どっちが返したエラーなのか特定が難しい
 
 <br />
 
-`ErrInternal` が `doSomething1` と `doSomething2` のどちらから返ってきたのか特定が難しい
+ex. `ErrInternal` が `doSomething1` と `doSomething2` のどちらから返ってきたのか特定が難しい
 
 ```go
 func handler() error {
@@ -145,14 +145,14 @@ layout: fact
 ---
 
 
-## どこから発生したエラーなのかは分かるようになった
+## どこから発生したエラーなのかは分かるようになった 😉
 
 ---
 layout: fact
 ---
 
 
-## だがしかし...
+## だがしかし... 🤨
 
 ---
 layout: two-cols
@@ -267,7 +267,7 @@ layout: center
 
 <br />
 
-1. エラーハンドリングライブラリの選定
+1. エラーをWrapしてスタックトレースを取るためのエラーハンドリングライブラリの選定
 1. Wrapされたエラーのスタックトレースを1箇所でログ出力できるように設定
 1. Wrapされたエラーに対応できてない部分を見つけて(`errors.Is,As`)修正
 1. エラーをWrapするように修正
@@ -292,7 +292,7 @@ layout: center
 - Why `morikuni/failure` ?
   - エラーそのものに情報をもたせるのではなく，関数内で情報を付与してラップしていくスタイル
   - そのため拡張性と汎用性が高くて、様々なエラーユースケースに対応できる🫰
-  - ex. エラーコードを埋め込んだり、多言語メッセージを埋め込んだり、**スタック情報**を付与したり...
+  - ex. エラーコードを埋め込んだり、多言語メッセージを埋め込んだり、**スタックトレース**を付与したり...
 - 👇 詳細は次の morikuni さんの発表で!!
 
 <br />
@@ -332,7 +332,7 @@ func ZerologErrorMarshalStack(err error) interface{} {
 layout: fact
 ---
 
-## Wrapされているエラーはスタックトレースが出るようになった
+## Wrapされているエラーはスタックトレースが出るようになった 🎉 🎉 🎉
 
 ---
 layout: center
@@ -568,12 +568,14 @@ layout: center
 
 <br/>
 
-- `rs/zerolog` がエラーからスタックトレースをエラーから正しく抽出できるように実装
-- [polyfloyd/go-errorlint](https://github.com/polyfloyd/go-errorlint)を利用してエラーがWrapされても問題ないように対応
-- エラーを `morikuni/failure` でWrapするようにしてスタックトレースを保持
-- エラーがWrapされていなかったり，不要になったログが出力されないように [tomarrell/wrapcheck](https://github.com/tomarrell/wrapcheck)，[semgrep](https://semgrep.dev/)で検知
+- `rs/zerolog` をエラー箇所で呼んで `caller` によって呼び出し元を特定していたが，いくつかの問題点があった
+- エラーにスタックトレースを保持して一箇所でエラーログを出力する方針に変更
+  - `rs/zerolog` がエラーからスタックトレースをエラーから正しく抽出できるように実装
+  - [polyfloyd/go-errorlint](https://github.com/polyfloyd/go-errorlint)を利用してエラーがWrapされても問題ないように対応
+  - エラーを `morikuni/failure` でWrapするようにしてスタックトレースを保持
+  - エラーがWrapされていなかったり，不要になったログが出力されないように [tomarrell/wrapcheck](https://github.com/tomarrell/wrapcheck)，[semgrep](https://semgrep.dev/)で検知
 - 冗長で見づらかったエラーログが一箇所に集約され，スタックトレースも出るように
-  - リクエストログと一緒に出すようにしたので，リクエストのペイロードとスタックトレースを一緒に見ることもできるようになって *Happy*
+  - リクエストログと一緒に出すようにしたので，リクエストのペイロードとスタックトレースを一緒に見ることもできるようになって *Happy* 🥰
 
 ---
 layout: center
