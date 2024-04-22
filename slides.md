@@ -1,11 +1,18 @@
 ---
 theme: default
-title: 冗長なエラーログを削減しつつ、スタックトレースを手に入れる
+title: 冗長なエラーログを削減し、スタックトレースを手に入れる
 highlighter: shiki
+author: Yu SERIZAWA (@upamune)
+download: true
+export:
+  format: pdf
+  withClicks: true
+  withToc: false
 drawings:
   persist: false
 transition: slide-left
 mdc: true
+background: https://cdn.jsdelivr.net/gh/slidevjs/slidev-covers@main/static/Afyjbfs1rKI.webp
 ---
 
 # 冗長なエラーログを削減し、
