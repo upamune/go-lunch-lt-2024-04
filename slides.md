@@ -280,6 +280,8 @@ layout: center
 
 ### エラーハンドリングライブラリの選定
 
+<br/>
+
 - バクラクでは[morikuni/failure](https://github.com/morikuni/failure)を採用
   - `lxerror` というパッケージを作って `failure` を薄くラップして使っている
   ```go
@@ -460,6 +462,9 @@ layout: center
 - `logger.Error().Caller().Err(err).Send()` を一括で削除
 - 有用なログはメッセージを付けていたり，他のフィールドが付与されているので，完全に一致するコードだけを削除対応
 
+---
+layout: center
+---
 
 ## これからのエラーのWrap漏れ，必要ないエラーログの検知 🕵️
 
@@ -554,9 +559,6 @@ layout: default
 
 ⚠️ 見やすいようにフォーマットを調整しています
 
----
-layout: center
----
 
 ---
 layout: center
